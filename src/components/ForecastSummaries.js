@@ -1,23 +1,7 @@
-// import React from "react";
-// import PropTypes from "prop-types;";
-
-// function App({ location, forecasts }) {
-//   return (
-//     <div className="forecast">
-//       <ForecastSummaries forecasts={forecasts} />
-//     </div>
-//   );
-// }
-// ForecastSummaries.propTypes = {
-//   city: PropTypes.string.isRequired,
-//   country: PropTypes.string.isRequired,
-// };
-
-// export default ForecastSummaries;
-
 import React from "react";
 import PropTypes from "prop-types";
 import ForecastSummary from "./ForecastSummary";
+import "../styles/ForecastSummaries.css";
 
 function ForecastSummaries({ forecasts }) {
   return (

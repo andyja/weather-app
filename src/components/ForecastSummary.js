@@ -1,17 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
+import WeatherIcon from "react-icons-weather";
 
 function ForecastSummary(props) {
   const { date, description, icon, temperature } = props;
 
+  const formattedDate = new Date(date).toDateString();
+
   return (
-    <div className="forecast-summary">
-      <p className="forecast-summary__date">{date}</p>
-      <p className="forecast-summary__icon"> {icon}</p>
-      <p className="forecast-summmary__temperature">{temperature.max}&deg;C</p>
-      <p className="forecast-summary__description">{description}</p>
+    <div className="forecast-summary" data-testid="forecast-summary">
+      <div className="forecast-summary__date">{formattedDate}</div>
+      <div className="forecast-summary__icon" data-testid="forecast-icon">
+        <WeatherIcon name="owm" iconId={icon} />
+      </div>
+      <div className="forecast-summary__temperature">
+        {temperature.max}&deg;C
+      </div>
+      <div className="forecast-summary__description">{description}</div>
     </div>
   );
+
+  // return (
+  //   <div className="forecast-summary" data-testid="forecast-summary">
+  //     <p className="forecast-summary__date">{formattedDate}</p>
+  //     <p className="forecast-summary__icon" data-testid="forecast-icon">
+  //       <WeatherIcon name="owm" iconID={icon} />
+  //     </p>
+  //     <p className="forecast-summmary__temperature">{temperature.max}&deg;C</p>
+  //     <p className="forecast-summary__description">{description}</p>
+  //   </div>
+  // );
 }
 
 ForecastSummary.propTypes = {
