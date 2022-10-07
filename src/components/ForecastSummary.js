@@ -19,17 +19,6 @@ function ForecastSummary(props) {
       <div className="forecast-summary__description">{description}</div>
     </div>
   );
-
-  // return (
-  //   <div className="forecast-summary" data-testid="forecast-summary">
-  //     <p className="forecast-summary__date">{formattedDate}</p>
-  //     <p className="forecast-summary__icon" data-testid="forecast-icon">
-  //       <WeatherIcon name="owm" iconID={icon} />
-  //     </p>
-  //     <p className="forecast-summmary__temperature">{temperature.max}&deg;C</p>
-  //     <p className="forecast-summary__description">{description}</p>
-  //   </div>
-  // );
 }
 
 ForecastSummary.propTypes = {
