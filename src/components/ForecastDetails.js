@@ -24,7 +24,6 @@ function ForecastDetails({ forecast }) {
       <div className="forecast-details__wind-direction">
         Wind Direction: {wind.direction}
       </div>
-      <p>hello world</p>
     </div>
   );
 }

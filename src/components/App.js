@@ -7,21 +7,24 @@ import ForecastDetails from "./ForecastDetails";
 
 function App(props) {
   const { location, forecasts } = props;
-  const initialDate = forecasts[0].date;
-
-  const [selectedDate] = useState(initialDate);
+  const [selectedDate, setSelectedDate] = useState(forecasts[0].date);
 
   const selectedForecast = forecasts.find(
     (forecast) => forecast.date === selectedDate
   );
 
-  console.log(selectedForecast);
+  const handleForecastSelect = (date) => {
+    setSelectedDate(date);
+  };
 
   return (
     <div className="weather-app">
       <LocationDetails city={location.city} country={location.country} />
-      <ForecastSummaries forecasts={forecasts} />
-      <ForecastDetails forecast={forecasts[0]} />
+      <ForecastSummaries
+        forecasts={forecasts}
+        onForecastSelect={handleForecastSelect}
+      />
+      <ForecastDetails forecast={selectedForecast} />
     </div>
   );
 }
