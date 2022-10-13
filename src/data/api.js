@@ -1,24 +1,12 @@
-// import axios from "axios";
-
-// const allForecastUrl = "http://mcr-codes-weather-app.herokuapp.com/forecast";
-
-// const getForecast = (setForecasts, setLocation, setSelectedDate) => {
-//   return axios.get(allForecastUrl).then((response) => {
-//     setForecasts(response.data.forecasts);
-//     setLocation(response.data.location);
-//     setSelectedDate(response.data.forecasts[0].date);
-//   });
-// };
-
-// export default getForecast;
-
+/* eslint-disable-next-line no-console */
 import axios from "axios";
 
 const getForecast = (
   searchText,
   setSelectedDate,
   setForecasts,
-  setLocation
+  setLocation,
+  setErrorMessage
 ) => {
   let allForecastUrl = "http://mcr-codes-weather-app.herokuapp.com/forecast";
 
@@ -26,11 +14,24 @@ const getForecast = (
     allForecastUrl += `?city=${searchText}`;
   }
 
-  axios.get(allForecastUrl).then((response) => {
-    setSelectedDate(response.data.forecasts[0].date);
-    setForecasts(response.data.forecasts);
-    setLocation(response.data.location);
-  });
+  axios
+    .get(allForecastUrl)
+    .then((response) => {
+      setSelectedDate(response.data.forecasts[0].date);
+      setForecasts(response.data.forecasts);
+      setLocation(response.data.location);
+    })
+    .catch((error) => {
+      const { status } = error.response;
+      if (status === 404) {
+        setErrorMessage("Location not in database, please try another city");
+        console.error("Location not found, please try again", error);
+      }
+      if (status === 500) {
+        setErrorMessage("Server not found, try another time");
+        console.error("Server error", error);
+      }
+    });
 };
 
 export default getForecast;
