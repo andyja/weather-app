@@ -8,7 +8,11 @@ function SearchForm(props) {
 
   return (
     <div className="search-form">
-      <input type="text" ref={inputElement} />
+      <input
+        type="text"
+        placeholder="enter a city here for forecast..."
+        ref={inputElement}
+      />
       <button
         type="submit"
         onClick={() => {
