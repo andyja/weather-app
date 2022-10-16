@@ -4,8 +4,15 @@ import WeatherIcon from "react-icons-weather";
 import ForecastDetails from "./ForecastDetails";
 
 function ForecastSummary(props) {
-  const { date, description, icon, temperature, onSelect, selectedForecast } =
-    props;
+  const {
+    date,
+    description,
+    icon,
+    temperature,
+    forecast,
+    handleMoreInfo,
+    showDetails,
+  } = props;
 
   const formattedDate = new Date(date).toDateString();
 
@@ -19,11 +26,10 @@ function ForecastSummary(props) {
         {temperature.max}&deg;C
       </div>
       <div className="forecast-summary__description">{description}</div>
-      <button type="button" onClick={() => onSelect(date)}>
+      <button type="button" onClick={() => handleMoreInfo()}>
         More details
       </button>
-      <p>ForecastDetails:</p>
-      {selectedForecast && <ForecastDetails forecast={selectedForecast} />}
+      {showDetails && <ForecastDetails forecast={forecast} />}
     </div>
   );
 }
@@ -36,18 +42,16 @@ ForecastSummary.propTypes = {
     min: PropTypes.number,
     max: PropTypes.number,
   }).isRequired,
-  onSelect: PropTypes.func.isRequired,
-  selectedForecast: PropTypes.shape({
+  forecast: PropTypes.shape({
     date: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    icon: PropTypes.number.isRequired,
     temperature: PropTypes.shape({
-      min: PropTypes.number,
       max: PropTypes.number,
-    }).isRequired,
-    wind: PropTypes.shape({
-      speed: PropTypes.number,
-      direction: PropTypes.string,
-    }).isRequired,
-    humidity: PropTypes.number.isRequired,
+      min: PropTypes.number,
+    }),
   }).isRequired,
+  handleMoreInfo: PropTypes.func.isRequired,
+  showDetails: PropTypes.bool.isRequired,
 };
 export default ForecastSummary;

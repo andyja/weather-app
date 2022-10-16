@@ -1,7 +1,13 @@
 .weather-app {
     margin: 0 10px;
+    background-color: skyblue;
+    background-image:
+    linear-gradient(
+        blue, skyblue
+    );
 }
 
 .LocationDetails {
     margin: 0 1000px;
 }
+

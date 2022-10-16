@@ -8,33 +8,20 @@ import SearchForm from "./SearchForm";
 function App() {
   const [forecasts, setForecasts] = useState([]);
   const [location, setLocation] = useState({ city: "", country: "" });
-  const [selectedDate, setSelectedDate] = useState();
+  const [, setSelectedDate] = useState();
   const [searchText, setSearchText] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
-
-  const selectedForecast = forecasts.find(
-    (forecast) => forecast.date === selectedDate
-  );
-
-  // const handleForecastSelect = (date) => {
-  //   setSelectedDate(date);
-  // };
-
-  // Run this when component loads...
-  // useEffect(() => {
-  //   getForecast("", setSelectedDate, setForecasts, setLocation);
-  // }, []);
 
   const handleForecastSelect = (date) => {
     setSelectedDate(date);
   };
 
-  const handleCitySearch = () => {
+  const handleCitySearch = (searchTerm) => {
     setSelectedDate();
     setErrorMessage(null);
     setLocation({ city: "", country: "" });
     getForecast(
-      searchText,
+      searchTerm,
       setSelectedDate,
       setForecasts,
       setLocation,
@@ -56,7 +43,7 @@ function App() {
         <ForecastSummaries
           forecasts={forecasts}
           onForecastSelect={handleForecastSelect}
-          selectedForecast={selectedForecast}
+          // selectedForecast={selectedForecast}
         />
       )}
     </div>
